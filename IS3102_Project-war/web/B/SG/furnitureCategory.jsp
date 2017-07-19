@@ -46,12 +46,35 @@
                         </div>
                         <div class="row">
                             <ul class="products product-thumb-info-list" data-plugin-masonry>
+                             
+                                <%@page import ="java.sql.*"%>
+
                                 <%
+                                
                                     try {
-                                        /**
-                                         * *insert code here**
-                                         */
-                                %>
+          // Step1: Load JDBC Driver
+           Class.forName("com.mysql.jdbc.Driver");
+
+          // Step 2: Define Connection URL
+          String connURL ="jdbc:mysql://localhost/jspg?user=root&password=12345"; 
+
+          // Step 3: Establish connection to URL
+          Connection conn =  DriverManager.getConnection(connURL); 
+      
+          Statement stmt = conn.createStatement();
+
+            String sqlStr   ="SELECT * FROM `islandfurniture-it07`.furnitureentity; ";                  
+              
+                    ResultSet rs = stmt.executeQuery(sqlStr); 
+                    while (rs.next()) { 
+                        id = rs.getInt("id");
+                        name = rs.getString("ImageURL")
+                    }}
+
+            %>
+                           
+                                
+                              
                                 <li class="col-md-3 col-sm-6 col-xs-12 product">
                                     <span class="product-thumb-info">
                                         <span class="product-thumb-info-image">
